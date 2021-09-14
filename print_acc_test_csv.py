@@ -47,6 +47,8 @@ for path in Path(args.parent_dir).rglob('training.log'):
     if last_match_line is not None and len(lines) > last_match_line + 1 and 'acc:' in lines[last_match_line+1]:
         acc = lines[last_match_line+1].split('acc:')[-1].split()[0]
         print(acc, path)
+        if (regime, dataset, run, CK, seed, method) in accuracies:
+            print('  !!  WARNING  !!  overriting existing result for', (regime, dataset, run, CK, seed, method))
         accuracies[(regime, dataset, run, CK, seed, method)] = acc
 
 datasets = sorted(list(datasets))

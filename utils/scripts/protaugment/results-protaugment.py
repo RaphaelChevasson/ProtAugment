@@ -113,7 +113,10 @@ def find_results():
     import pandas as pd
 
     df = pd.DataFrame(out)
-    print(df.to_csv(sep='\t', index=False))
+    print(df.shape)
+    with pd.option_context('display.max_rows', None, 'display.max_columns', None):  # display all rows/cols
+        print(df)
+    df.to_clipboard(index=False)
 
 
 if __name__ == "__main__":
